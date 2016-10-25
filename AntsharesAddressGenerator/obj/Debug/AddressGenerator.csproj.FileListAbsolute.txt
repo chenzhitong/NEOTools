@@ -23,3 +23,6 @@ C:\Users\chenz\Source\Repos\AntsharesAddressGenerator\obj\Debug\AddressGenerator
 C:\Users\chenz\Source\Repos\AntsharesAddressGenerator\AntsharesAddressGenerator\bin\Debug\AddressGenerator.exe.config
 C:\Users\chenz\Source\Repos\AntsharesAddressGenerator\AntsharesAddressGenerator\obj\Debug\AddressGenerator.exe
 C:\Users\chenz\Source\Repos\AntsharesAddressGenerator\AntsharesAddressGenerator\obj\Debug\AddressGenerator.pdb
+C:\Users\chenz\Source\Repos\AntsharesTools\AntsharesAddressGenerator\bin\Debug\AddressGenerator.exe.config
+C:\Users\chenz\Source\Repos\AntsharesTools\AntsharesAddressGenerator\obj\Debug\AddressGenerator.exe
+C:\Users\chenz\Source\Repos\AntsharesTools\AntsharesAddressGenerator\obj\Debug\AddressGenerator.pdb

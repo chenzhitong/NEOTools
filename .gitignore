@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs/AntsharesTools/v14
+/AntsharesAddressDetectionTools/obj/Debug
+/AntsharesAddressDetectionTools/bin/Debug
