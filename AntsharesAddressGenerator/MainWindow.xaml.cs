@@ -14,9 +14,14 @@ namespace AddressGenerator
     public partial class MainWindow : Window
     {
         bool pause = true;
+        int goodLength;
+        int uppercase;
         string[] startWith;
+        string[] contains;
+        string[] endWith;
         ObservableCollection<GoodAddress> goodAddresses = new ObservableCollection<GoodAddress>();
         Thread[] threads = new Thread[8];
+        
 
         public MainWindow()
         {
@@ -26,7 +31,11 @@ namespace AddressGenerator
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             textProcessorCount.Text = Environment.ProcessorCount.ToString();
-            startWith = File.ReadAllLines("StartWith.txt");
+            startWith = File.ReadAllLines("startWith.txt");
+            contains = File.ReadAllLines("contains.txt");
+            endWith = File.ReadAllLines("endWith.txt");
+            goodLength = Convert.ToInt32(File.ReadAllText("goodLength.txt"));
+            uppercase = Convert.ToInt32(File.ReadAllText("uppercase.txt"));
             dataGrid1.ItemsSource = goodAddresses;
         }
 
@@ -69,7 +78,20 @@ namespace AddressGenerator
         {
             var account = new Account(privateKey);
             var contract = Contract.CreateSignatureContract(account.PublicKey);
-            if (startWith.Any(p => contract.Address.ToLower().StartsWith(p)) && !goodAddresses.Any(p => p.Address == contract.Address))
+            var address = contract.Address;
+            if (startWith.Any(p => address.StartsWith(p)) || contains.Any(p => address.Contains(p)) || endWith.Any(p => address.EndsWith(p)))
+            {
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate ()
+                {
+                    goodAddresses.Add(new GoodAddress()
+                    {
+                        Address = contract.Address,
+                        Privatekey = account.Export()
+                    });
+                });
+            }
+            var length = contract.Address.Sum(p => p.Length());
+            if (length < goodLength || contract.Address.Count(p => p >='A' && p <= 'Z') < uppercase)
             {
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate ()
                 {

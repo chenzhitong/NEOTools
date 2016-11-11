@@ -69,6 +69,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GoodAddress.cs" />
+    <Compile Include="LetterLength.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -103,6 +104,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AntSharesCore.dll" />
+    <Content Include="bin\Debug\AntSharesCore.dll" />
+    <Resource Include="bin\Debug\contains.txt" />
+    <Resource Include="bin\Debug\endWith.txt" />
+    <Resource Include="bin\Debug\goodLength.txt" />
+    <Resource Include="bin\Debug\startWith.txt" />
+    <Resource Include="bin\Debug\uppercase.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
