@@ -1,0 +1,28 @@
+﻿<Window x:Class="AddressGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Loaded="Window_Loaded"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" FontFamily="微软雅黑"
+        xmlns:local="clr-namespace:AddressGenerator" Title="NEO靓号生成器" Closed="Window_Closed"
+        mc:Ignorable="d" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Margin="5" Padding="10 5" Click="Button_Click">开始生成</Button>
+        </StackPanel>
+        <DataGrid Grid.Row="1" FontSize="15" Name="dataGrid1" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="地址" Width="1*" FontSize="16" Binding="{Binding Address}"/>
+                <DataGridTextColumn Header="私钥" Width="2*" FontSize="16"  Binding="{Binding Privatekey}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StatusBar Grid.Row="2">
+            <TextBlock>CPU核心数：</TextBlock><TextBlock Name="textProcessorCount"></TextBlock>
+            <TextBlock>工作线程数：</TextBlock><TextBlock Name="textThreadCount">0</TextBlock>
+        </StatusBar>
+    </Grid>
+</Window>
