@@ -1,4 +1,4 @@
-﻿using AntShares.Wallets;
+﻿using Neo;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -76,8 +76,8 @@ namespace AddressGenerator
 
         public void Generate(byte[] privateKey)
         {
-            var account = new Account(privateKey);
-            var contract = Contract.CreateSignatureContract(account.PublicKey);
+            var account = new Neo.Wallets.KeyPair(privateKey);
+            var contract = Neo.SmartContract.Contract.CreateSignatureContract(account.PublicKey);
             var address = contract.Address;
             if (startWith.Any(p => address.StartsWith(p)) || contains.Any(p => address.Contains(p)) || endWith.Any(p => address.EndsWith(p)))
             {
@@ -88,6 +88,7 @@ namespace AddressGenerator
                         Address = contract.Address,
                         Privatekey = account.Export()
                     });
+                    File.AppendAllText("goodAddress.txt", $"{contract.Address}\t{account.Export()}\r\n");
                 });
             }
             var length = contract.Address.Sum(p => p.Length());
@@ -100,6 +101,7 @@ namespace AddressGenerator
                         Address = contract.Address,
                         Privatekey = account.Export()
                     });
+                    File.AppendAllText("goodAddress.txt", $"{contract.Address}\t{account.Export()}\r\n");
                 });
             }
         }
