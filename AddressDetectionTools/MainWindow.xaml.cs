@@ -25,7 +25,7 @@ namespace AntsharesAddressDetectionTools
                 if(!string.IsNullOrEmpty(item))
                 try
                 {
-                    Wallet.ToScriptHash(item);
+                    item.ToScriptHash();
                 }
                 catch (FormatException)
                 {

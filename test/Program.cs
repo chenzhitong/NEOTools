@@ -35,9 +35,8 @@ namespace test
 
         public static string PublicKeyToSignatureContractAddress(string publicKey)
         {
-            ECPoint cyanPubKey;
-            ECPoint.TryParse(publicKey, ECCurve.Secp256r1, out cyanPubKey);
-            return VerificationContract.CreateSignatureContract(cyanPubKey).Address;
+            ECPoint.TryParse(publicKey, ECCurve.Secp256r1, out ECPoint cyanPubKey);
+            return Neo.SmartContract.Contract.CreateSignatureContract(cyanPubKey).Address;
         }
 
         public static UInt160 ToScriptHash(string address)
